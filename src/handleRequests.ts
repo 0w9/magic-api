@@ -3,12 +3,32 @@ import { Response, Middleware } from "./basics/";
 import Router from "./router";
 import { MiddlewareInterface } from "./basics/Middlware";
 
-export interface Request extends IncomingMessage {
+/**
+ * A Request is a wrapper around an IncomingMessage. It's the data recieved when a request is made to the server.
+ * 
+ * @param {IncomingMessage} req The HTTP request
+ * @param {string[]} params The params of the request's route, like /api/users/:id would have params of ["id"].
+ * @returns {Promise<any>} Promise resolved.
+ */
+export class Request extends IncomingMessage {
     params: string[];
 
-    
+    constructor(req: IncomingMessage) {
+        super(req.socket);
+        this.params = req.url!.split("/").filter((param) => param !== "")
+    }
 }
 
+/**
+ * The handler of the server. It is the function that is called when a request is made to the server and handles 
+ * the request. It parses the request and calls the registered middlewares, after that it calls the registered
+ * route bound to the request's path.
+ * 
+ * @param {Request} req The HTTP request
+ * @param {Response} res The HTTP response
+ * @param {Router[]} routers The list of routers
+ * @param {MiddlewareInterface[]} middlewares The list of middlewares
+ */
 export default function handleRequest(
     req: Request,
     res: Response, 
