@@ -18,7 +18,7 @@ class MagicServer {
     port?: number
     server?: http.Server
     routes?: Spell[] = []
-    middlewares: MiddlewareInterface[] = []
+    middlewares: MiddlewareInterface [] = []
     middlewareIndex = 0
     currentMiddleware: any = null
 
@@ -66,7 +66,7 @@ class MagicServer {
      * @param {function} callback - The middleware function to be added.
      */
     use(callback: (req: Request, res: Response, next: any) => any) {
-        this.middlewares.push(new Middleware(callback))
+        this.middlewares.push(callback)
     }
 }
 

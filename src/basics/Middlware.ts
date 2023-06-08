@@ -17,7 +17,8 @@ export class Middleware {
 
     
     callbackFunction: (req: Request, res: Response, next: any) => any;
-    constructor(callbackFunction: (req: IncomingMessage, res: Response, next: any) => any) {
+    
+    constructor(callbackFunction: (req: Request, res: Response, next: any) => any) {
         this.callbackFunction = callbackFunction
         this.resolve = this.next
         this.nextStatus = "Running"
@@ -41,5 +42,5 @@ export class Middleware {
 }
 
 export interface MiddlewareInterface extends Middleware {
-    callbackFunction: (req: IncomingMessage, res: Response, next: any) => any;
+    callbackFunction: (req: Request, res: Response, next: any) => any;
 }
