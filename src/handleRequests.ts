@@ -1,5 +1,5 @@
-import { IncomingMessage, ServerResponse } from "http";  
-import { Response, Middleware } from "./basics/"; 
+import { IncomingMessage } from "http";  
+import { Response, } from "./basics/"; 
 import Router from "./router";
 import { MiddlewareInterface } from "./basics/Middlware";
 
@@ -13,7 +13,7 @@ import { MiddlewareInterface } from "./basics/Middlware";
 export class Request extends IncomingMessage {
     params: string[];
 
-    constructor(req: IncomingMessage) {
+    constructor(req: Request) {
         super(req.socket);
         this.params = req.url!.split("/").filter((param) => param !== "")
     }

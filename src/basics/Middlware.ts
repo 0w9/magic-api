@@ -17,7 +17,7 @@ export class Middleware {
 
     
     callbackFunction: (req: Request, res: Response, next: any) => any;
-    
+
     constructor(callbackFunction: (req: Request, res: Response, next: any) => any) {
         this.callbackFunction = callbackFunction
         this.resolve = this.next
@@ -29,12 +29,12 @@ export class Middleware {
     }
 
     async callback(
-        req: IncomingMessage,
+        req: Request,
         res: Response,
     ): Promise<any> {
         return new Promise(resolve => {
             this.resolve = resolve
-            this.callbackFunction(new Request(req), res, this.next)
+            this.callbackFunction(req, res, this.next)
 
             //this.next("yoyo")
         })

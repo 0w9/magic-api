@@ -1,7 +1,5 @@
 import { italic } from "colorette";
 import { Spell, createMagic } from "./src";
-import { IncomingMessage, ServerResponse } from "http";
-import { Response, Middleware} from "./src/basics/";
 
 const router = new Spell("/api/*id")
 

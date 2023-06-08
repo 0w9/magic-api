@@ -1,5 +1,6 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { Response } from "./basics/Response"; 
+import { Request } from "./handleRequests";
 /**
  * A "Spell" is what you need for the "Magic" server. It's defining a POST and GET route.
  * 
@@ -32,11 +33,11 @@ export default class Spell {
     params: string[];
 
     postCallback?: (
-        req: IncomingMessage,
+        req: Request,
         res: Response
     ) => void;
     getCallback?: (
-        req: IncomingMessage,
+        req: Request,
         res: Response
     ) => void;
 
@@ -64,7 +65,7 @@ export default class Spell {
      **/     
     post(
         callback :(
-            req: IncomingMessage,
+            req: Request,
             res: Response
         ) => void) 
     {
